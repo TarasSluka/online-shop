@@ -1,0 +1,16 @@
+<div ng-if="showFilter">
+    <article>
+        min price:
+        <input ng-min="minRangeSlider.options.floor" ng-max="minRangeSlider.options.ceil"
+               type="number" ng-model="minRangeSlider.minValue"/>
+        <br/>max price:
+        <input ng-min="minRangeSlider.options.floor" ng-max="minRangeSlider.options.ceil"
+               type="number" ng-model="minRangeSlider.maxValue"/>
+        <br/>
+        <rzslider rz-slider-model="minRangeSlider.minValue" rz-slider-high="minRangeSlider.maxValue"
+                  rz-slider-options="minRangeSlider.options"></rzslider>
+    </article>
+    <button type="button" class="btn btn-primary" ng-click="sendFilter(minRangeSlider.minValue,minRangeSlider.maxValue)">
+        add filter
+    </button>
+</div>

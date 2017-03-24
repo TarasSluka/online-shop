@@ -1,0 +1,172 @@
+<div class="container-fluid">
+    <div class="row edit-profile-wrap">
+        <div class="fixed-buttons">
+            <div class="user-profile-buttons">
+                <a ui-sref="shop.user">
+                    <button class="btn-lg btn-success" type="button">cancel</button>
+                </a>
+            </div>
+        </div>
+        <div class="photo-block">
+            <img class="photo" ng-src="{{avaUrl}}" alt="">
+            <button ngf-select ng-model="picFile" name="file"
+                    accept="image/*" ngf-max-size="2MB" required
+                    ngf-model-invalid="errorFile">choose ava
+            </button>
+        </div>
+        <div class="profile-container-wrap">
+            <div class="left">
+                <form class="info-block" name="userForm">
+                    <h3 class="subtitle">Main information</h3>
+                    <div class="field-block">
+                        <span class="labels required">First Name</span>
+                        <div class="field-block-content">
+                            <input type="text"
+                                   class="form-element"
+                                   name="firstName"
+                                   id="firstName"
+                                   placeholder="Enter your Fitst Name"
+                                   ng-change="disableSave = newUser.firstName === user.firstName"
+                                   ng-model="newUser.firstName"
+                                   ng-init="newUser.firstName = user.firstName"
+                            />
+                        </div>
+                    </div>
+                    <div class="field-block">
+                        <span class="labels required">Last Name</span>
+                        <div class="field-block-content">
+                            <input type="text"
+                                   class="form-element"
+                                   name="lastName"
+                                   id="lastName"
+                                   placeholder="Enter your Last Name"
+                                   ng-change="disableSave = newUser.lastName === user.lastName"
+                                   ng-model="user.lastName"
+                                   ng-init="newUser.lastName = user.lastName"/>
+                        </div>
+                    </div>
+                    <div class="field-block">
+                        <span class="labels required">Email</span>
+                        <div class="field-block-content">
+                            <input type="text"
+                                   class="form-element"
+                                   name="email" id="email"
+                                   placeholder="Enter your email"
+                                   ng-change="disableSave = newUser.email === user.email"
+                                   ng-model="newUser.email"
+                                   ng-init="newUser.email = user.email"/>
+                        </div>
+                    </div>
+                    <div class="field-block">
+                        <span class="labels required">Phone number</span>
+                        <div class="field-block-content">
+                            <input type="text"
+                                   class="form-element"
+                                   name="phoneNumber"
+                                   id="phoneNumber"
+
+                                   mask="'99-99-9999'"
+                                   data-number="user.phoneNumber"
+                                   placeholder="phone number"
+                                   ng-change="disableSave = newUser.phoneNumber === user.phoneNumber"
+                                   ng-model="newUser.phoneNumber"
+                                   ng-init="newUser.phoneNumber = user.phoneNumber"
+                            />
+                        </div>
+                    </div>
+                    <div class="field-block">
+                        <span class="labels required">Sex</span>
+                        <div class="field-block-content ">
+                            <div class="<!--form-group-->">
+                                <form name="sexForm">
+                                    <lable class="radio-inline">
+                                        <input style="width: auto"
+                                               type="radio"
+                                               class="<!--form-element-->"
+                                               name="sexForm.sex"
+                                               id=""
+                                               ng-model="newUser.sex"
+                                               ng-change="disableSave = newUser.sex === user.sex"
+                                               ng-init="newUser.sex = user.sex"
+                                               value="FEMALE">Female
+
+                                    </lable>
+                                    <lable class="radio-inline">
+                                        <input style="width: auto"
+                                               type="radio"
+                                               class="<!--form-element -->"
+                                               name="sexForm.sex"
+                                               ng-change="disableSave = newUser.sex === user.sex"
+                                               ng-model="newUser.sex"
+                                               ng-init="newUser.sex = user.sex"
+                                               value="MALE">Male
+                                    </lable>
+                                </form>
+                            </div>
+                        </div>
+                        <input value="Save" ng-disabled="userForm.$invalid && disableSave && avaNew"
+                               ng-click="saveNewUser()"
+                               class="btn btn-success pull-right"
+                               type="button">
+                    </div>
+
+                </form>
+            </div>
+            <div class="right">
+                <form class="info-block" style="background: antiquewhite;" name="passwordForm">
+                    <h3 class="subtitle">Change password</h3>
+                    <div class="field-block">
+                        <span class="labels required">Old password</span>
+                        <div class="field-block-content">
+                            <input
+                                    type="text"
+                                    class="form-element"
+                                    name="oldPassword"
+                                    placeholder="Enter your old password"
+                                    ng-model="password.oldPassword"
+                                    required
+                                    maxlength="15"
+                                    minlength="6"
+                            />
+                            <div ng-messages="passwordForm.oldPassword.$error" role="alert">
+                                <span ng-message="maxlength">This field can be at most 15 characters long.</span>
+                                <span ng-message="minlength">This field Can be the length of at least 6 symbols.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field-block">
+                        <span class="labels required">New password</span>
+                        <div class="field-block-content">
+                            <input type="text"
+                                   class="form-element"
+                                   name="newPassword"
+                                   placeholder="Enter your new password"
+                                   ng-model="password.newPassword"
+                                   required
+                                   ng-maxlength="15"
+                                   ng-minlength="6"
+                            />
+                            <div ng-messages="passwordForm.newPassword.$error" role="alert">
+                                <span ng-message="maxlength">This field can be at most 15 characters long.</span>
+                                <span ng-message="minlength">This field Can be the length of at least 6 symbols.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div ng-if="showchangePasswordMassage" class="pull-left">
+                            <span> {{changePasswordMassage}}</span>
+                        </div>
+                        <div class="pull-right">
+                            <button ng-click="changePassword()" ng-disabled="passwordForm.$invalid|| passwordLoading"
+                                    class="btn btn-success">Change
+                                password
+                            </button>
+                            <img ng-if="passwordLoading"
+                                 src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

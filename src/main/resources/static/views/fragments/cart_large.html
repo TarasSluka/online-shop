@@ -1,0 +1,80 @@
+<div>
+    <div class="col-sm-12 col-md-10 col-md-offset-1">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th class="text-center">Price</th>
+                <th class="text-center">Total</th>
+                <th> </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="cart in productInCart">
+                <td class="col-sm-8 col-md-6">
+                    <div class="media">
+                        <a class="thumbnail pull-left">
+                            <!--ng-src="data:image/JPEG;base64,{{cart.productDto.ava}}" -->
+                            <img class="media-object" style="width: 72px; height: 72px;"
+                                 ng-src="{{avaUrl}}" ava-load-by-id-product="{{cart.productDto.id}}"
+                                 alt="{{cart.productDto.name}}">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a>{{cart.productDto.name}}</a></h4>
+                            <!--<h5 class="media-heading"> by <a href="#">Brand name</a></h5>-->
+                            <!--<span>Status: </span><span class="text-success"><strong>In Stock</strong></span>-->
+                        </div>
+                    </div>
+                </td>
+                <td class="col-sm-1 col-md-1" style="text-align: center">
+                    <form name="myForm">
+                        <div class="form-group" ng-class="{'has-error': myForm.quantity.$invalid}">
+                            <input type="number" class="form-control" name="quantity"
+                                   ng-change="changeQuantity(cart.productDto.id, cart.quantity)"
+                                   ng-model="cart.quantity"
+                                   ng-pattern="/^[1-9]+[0-9]*$/"
+                                   step="0.01" required>
+                            <span class="help-block" ng-show="!myForm.quantity.$valid">Invalid!</span>
+                    </form>
+                </td>
+                <td class="col-sm-1 col-md-1 text-center"><strong>{{cart.productDto.price |number}} грн</strong></td>
+                <td class="col-sm-1 col-md-1 text-center"><strong>{{cart.productDto.price *cart.quantity |number}}
+                    грн</strong>
+                </td>
+                <td class="col-sm-1 col-md-1">
+                    <button ng-click="delete(cart.productDto.id)" type="button" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-remove"></span> Remove
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>  </td>
+                <td>  </td>
+                <td>  </td>
+                <td><h3>Total</h3></td>
+                <td class="text-right">
+                    <h3><strong>
+                        <cart-total-price></cart-total-price>
+                        грн</strong></h3>
+                </td>
+            </tr>
+            <tr>
+                <td>  </td>
+                <td>  </td>
+                <td>  </td>
+                <td>
+                    <button type="button" class="btn btn-default" ui-sref="shop.root.home">
+                        <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                    </button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-success">
+                        Checkout <span class="glyphicon glyphicon-play"></span>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

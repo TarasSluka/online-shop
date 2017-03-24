@@ -1,0 +1,211 @@
+<form class="edit_product" name="edit_product" novalidate>
+    <!----------------------------------------Product-------------------------------------->
+    <div class="info-block product-block">
+        <h3 class="info-block-title">Product</h3>
+        <div class="info-block-content">
+            <div class="field-block form-group">
+                <span class="labels">Name</span>
+                <div class="field-block-content"
+                     ng-class="{ 'has-error': edit_product.name.$invalid  && edit_product.name.$error.required}">
+                    <input name="name"
+                           ng-model="name"
+                           type="text"
+                           class="form-control"
+                           placeholder="Enter name"
+                           ng-required="true"/>
+                    <span class="help-block"
+                          ng-show="edit_product.name.$invalid &&  edit_product.name.$error.required">
+                        Product name is required
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="field-block form-group">
+            <span class="labels ">Price</span>
+            <div class="field-block-content "
+                 ng-class="{ 'has-error': edit_product.price.$invalid && edit_product.price.$error }">
+                <input name="price"
+                       ng-model="price"
+                       type="number"
+                       class="form-control"
+                       placeholder="Enter price"
+                       ng-required="true"/>
+                <span class="help-block"
+                      ng-show="edit_product.price.$invalid &&  edit_product.price.$error.required">
+                        Product name is required
+                    </span>
+                <span class="help-block"
+                      ng-show="edit_product.price.$invalid &&  edit_product.price.$error.number">
+                        Not valid number!
+                    </span>
+            </div>
+        </div>
+        <h3 class="info-block-title">Product category</h3>
+        <div class="info-block-content">
+            <!----------------------------------------Category-------------------------------------->
+            <div class="field-block">
+                <span class="labels ">Category </span>
+                <div class="field-block-content" auto-close="outsideClick">
+                    <div class="input-group">
+                        <ui-select ng-model="category.selected" theme="bootstrap" style="width: 300px;"
+                                   title="Choose a country">
+                            <ui-select-match placeholder="Select or search category in the list...">
+                                {{$select.selected.name}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="category in categories | filter: $select.search">
+                                <span ng-bind-html="category.name | highlight: $select.search"></span>
+                                <!--<small ng-bind-html="category.id| highlight: $select.search"></small>-->
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn" style="width: 0%">
+                        <button type="button" ng-click="category.selected = undefined" class="btn btn-default">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                            </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!----------------------------------------value-------------------------------------->
+        <hr>
+        <h3 class="info-block-title">Product value</h3>
+        <div class="info-block-content">
+            <div class="field-block form-group">
+                <span class="labels">Type value</span>
+                <div class="field-block-content">
+                    <input ng-model="type"
+                           type="text"
+                           class="form-control"
+                           placeholder="Enter type"/>
+                </div>
+            </div>
+            <div class="field-block form-group">
+                <span class="labels">Description</span>
+                <div class="field-block-content">
+                    <input
+                            ng-model="value"
+                            type="text"
+                            class="form-control"
+                            placeholder="Enter value"/>
+                </div>
+            </div>
+            <div class="field-block">
+                        <span ng-show="massageDescription"
+                              style="padding-left:155px;color: #a94442;">
+                            All field is required
+                        </span>
+                <button
+                        ng-click="addDescription()"
+                        class="btn btn-success pull-right">
+                    Add
+                </button>
+                <!--</div>-->
+            </div>
+
+            <!----------------------------------------List Description-------------------------------------->
+            <table ng-show="listDescription.length" class="table table-condensed table-hover table-striped">
+                <thead>
+                <tr>
+                    <th width="20%">
+                        Type
+                    </th>
+                    <th width="55%">
+                        Description
+                    </th>
+                    <th width="25%">
+                        Action
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="value in listDescription"
+                    ng-init="edit = false">
+                    <!--<td ng-click="edit = !edit">edit = {{edit}}</td>-->
+                    <td>
+                        <span ng-hide="edit">{{value.type}}</span>
+                        <input ng-show="edit" type="text" ng-init="'{{value.type}}'"
+                               ng-model="value.type" class="width: 100%;">
+                        <span ng-show="edit && !value.type.length" style="color: #a94442;">Type is required</span>
+                    </td>
+                    <td>
+                        <span ng-hide="edit">{{value.value}}</span>
+                        <input ng-show="edit" type="text" ng-init="'{{value.value}}'"
+                               ng-model="value.value" class="width: 100%;">
+                        <span ng-show="edit && !value.value.length"
+                              style="color: #a94442;">Description is required</span>
+                    </td>
+                    <td>
+                        <button ng-hide="edit " ng-click="edit = !edit" type="button" class="btn btn-success">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </button>
+                        <button ng-disabled="!value.value.length || !value.type.length" ng-show="edit"
+                                ng-click="edit = !edit" type="button"
+                                class="btn ">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </button>
+                        <button ng-click="removeDescription(value)"
+                                type="button" class="btn <!--btn-sm -->btn-danger">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div style="margin-right: 170px;">
+        <hr>
+        <div style="background-color: #c4e3f3;display: inline-block;">
+            <h3 class="info-block-title">Photo</h3>
+
+            <div>
+                <button ngf-select ng-model="picFile" name="file"
+                        accept="image/*" ngf-max-size="2MB" required
+                        ngf-model-invalid="errorFile" multiple>Add Photos
+                </button>
+                <table width="100%" ng-show="photos.length" class="table">
+                    <thead>
+                    <tr>
+                        <th> ava</th>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Size</th>
+                        <th width="">
+                            <button type="button" class="btn btn-danger" ng-click="removeAllPhoto()">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>{{ava.photos | json}}</tr>
+                    <tr ng-repeat="photo in photos">
+                        <td>
+                            <input type="radio" value="{{photo.name}}" ng-model="$parent.avaName"/>
+                        </td>
+                        <td><img style="height: 150px;" ngf-src="photo"></td>
+                        <td><strong>{{ photo.name }}</strong></td><!--{{getFileName(photo)}}-->
+                        <td nowrap>{{photo.size/1024/1024|number:2 }} MB</td>
+                        <td>
+                            <button ng-disabled="checkDeletePhoto(photo.name)" type="button"
+                                    class="btn btn-danger"
+                                    ng-click="removePhoto($index)">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                            <button ng-show="checkDeletePhoto(photo.name)" type="button"
+                                    class="btn btn-success"
+                                    ng-click="restorePhoto(photo.name)">
+                                Restore
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr>
+        <button ng-click="updateProduct()" type="button" class="btn btn-success">Update product</button>
+        <hr>
+    </div>
+</form>

@@ -1,0 +1,105 @@
+<div class="product-list">
+    <div class="product-list-header">
+        <div class="pull-left">
+            <div style="display: flex;">
+                <div ng-include="'/views/fragments/category_breadcrumb.html'"></div>
+                <div ng-if="showPrice()" style="margin: auto; padding-left: 10px;">
+                    <lable style="color: #2a6496;">
+                        UAH {{minPrice|number}} - UAH {{maxPrice |number}}
+                        <a><span ng-click="toogleShowPrice()" class="glyphicon glyphicon-remove"></span></a>
+                    </lable>
+                </div>
+            </div>
+        </div>
+
+        <div class="pull-right">
+            <lable ng-if="totalElements" style="color: #2a6496;">total elements <span class="badge">
+                {{totalElements}}
+            </span></lable>
+            <div class="btn-group">
+                <a class="btn btn-white dropdown-toggle"
+                   data-toggle="dropdown"
+                   ng-init="sortBy = ''">
+                    <label> sort by: </label>{{sortBy}}
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a ng-click="sortBy ='Date: newer'">Date: newer</a></li>
+                    <li><a ng-click="sortBy ='Date: older'">Date: older</a></li>
+                    <li><a ng-click="sortBy ='Price: Low to High'">Price: Low to High</a></li>
+                    <li><a ng-click="sortBy ='Price: High to Low'">Price: High to Low</a></li>
+                    <li visible-to-roles="ROLE_ADMIN"><a ng-click="sortBy ='Category: null'">Product without
+                        category</a></li>
+                </ul>
+            </div>
+            <div class="btn-group">
+                <a class="btn btn-white dropdown-toggle"
+                   data-toggle="dropdown"
+                   ng-init="size = 20">
+                    {{size}}
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a ng-click="size =2">2</a></li>
+                    <li><a ng-click="size =5">5</a></li>
+                    <li><a ng-click="size =10">10</a></li>
+                    <li><a ng-click="size =20">20</a></li>
+                    <li><a ng-click="size =50">50</a></li>
+                    <li><a ng-click="size =100">100</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <ng-image-gallery images="images" methods="methods" conf="{imgAnim: 'slide'}" thumbnails="false"
+                      inline="false" bubbles="bubbles" img-bubbles="true" bg-close="true" on-open="opened();"
+                      on-close="closed();" bg-close="false"></ng-image-gallery>
+    <div ng-if="products.length>0" id="products" class="list-group">
+        <div class="item list-group-item" ng-repeat="product in products">
+            <div class="thumbnail row">
+                <a ng-click="openGalleryImage(product.id)">
+                    <img class="img-rounded list-group-image"
+                         ng-src="{{avaUrl}}" ava-load-by-id-product="{{product.id}}"
+                         alt="{{product.name}}" style="height: 250px; width: 400px;"/>
+                </a>
+                <div class="caption">
+                    <h4 class="group inner list-group-item-heading">
+                        <a ui-sref="shop.root.home.product({productId: product.id})">
+                            <h4>
+                                {{product.name}}
+                            </h4>
+                        </a>
+                    </h4>
+                    <p class="inner list-group-item-text" ng-repeat="value in product.value">
+                        {{value.name}}</p>
+                    <div class="" style="">
+                        <div class="" style="float: left;">
+                            <p class="lead">
+                                {{product.price |number}} грн</p>
+                        </div>
+                        <div class="" style="float: right;">
+                            <div visible-to-roles="ROLE_USER,ROLE_ANONYMOUS">
+                                <button ng-disabled="checkProductInCart(product.id)" ng-click="addToCard(product, 1)"
+                                        class="btn btn-primary">
+                                    Add to cart
+                                </button>
+                            </div>
+                            <div>
+                                <span ng-show="checkProductInCart(product.id)">
+                                    this product in your cart<a ng-click="deleteFromCart(product.id)">remove</a>
+                                </span>
+                            </div>
+                            <div visible-to-roles="ROLE_ADMIN">
+                                <a ui-sref="shop.root.admin.product.edit({id:product.id})"
+                                   class="btn btn-success">edit</a>
+                                <a ng-click="deleteProduct(product.id)" class="btn btn-danger">delete</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="products.length===0">
+        <h3 style="text-align: center">No Products</h3>
+    </div>
+    <div class="text-center" ng-include="'views/part/pagination.html'"></div>
+</div>

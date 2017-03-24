@@ -1,0 +1,74 @@
+<div class="container all-profile-wrap">
+    <div class="profile-wrap relative">
+        <div class="profile-wrap-head">
+            <div class="profile-title">Profile</div>
+            <div class="edit-btn-block">
+                <div class="user-profile-edit-btn">
+                    <a ui-sref="shop.user.editProfile" class="btn btn-danger" role="button">Edit</a>
+                </div>
+            </div>
+        </div>
+        <div class="profile-container-wrap">
+            <div class="left">
+                <div class="info">
+                    <div class="info-name">
+                        <div class="info-name-title"><span>{{firstName + ' '+lastName}}</span></div>
+                        <div class="img-info">
+                            <div class="imgHolder"
+                                 style="background-image: url(/images/users/anonymous/user-512x512.png);"></div>
+                        </div>
+                    </div>
+                    <div class=" content info-content">
+                        <div class="profile-row">
+                            <div class="ng-binding">First name</div>
+                            <div class="ng-binding">{{user.firstName}}</div>
+                        </div>
+                        <div class="profile-row">
+                            <div class="ng-binding">Last name</div>
+                            <div class="ng-binding">{{user.lastName}}</div>
+                        </div>
+                        <div class="profile-row">
+                            <div class="ng-binding">Email</div>
+                            <div class="ng-binding">{{user.email}}</div>
+                        </div>
+                        <div class="profile-row">
+                            <div class="ng-binding">userName</div>
+                            <div class="ng-binding">{{user.userName}}</div>
+                        </div>
+                        <div class="profile-row">
+                            <div class="ng-binding">Phone Number</div>
+                            <div class="ng-binding">{{user.phoneNumber}}</div>
+                        </div>
+                        <div ng-if="user.sex" class="profile-row">
+                            <div class="ng-binding">Sex</div>
+                            <div class="ng-binding">{{user.sex==='MALE' ? 'Male' : 'Female'}}</div>
+                        </div>
+                        <div ng-if="user.modifiedDate" class="profile-row">
+                            <div class="ng-binding">Register</div>
+                            <div class="ng-binding">{{user.modifiedDate|date:'dd-MM-yyyy'}}</div>
+                        </div>
+                        <div ng-if="user.modifiedDate" class="profile-row">
+                            <div class="ng-binding">Last Modified</div>
+                            <div class="ng-binding">{{user.modifiedDate|date:'dd-MM-yyyy'}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="info">
+                    <div class="profile-title">Bank data</div>
+                    <div class="education-content">
+                        <div class="profile-row">
+                            <div class="ng-binding">asdasd</div>
+                            <div class="ng-binding">asdasd</div>
+                        </div>
+                        <div class="profile-row">
+                            <div class="ng-binding">asdasd</div>
+                            <div class="ng-binding">asdasd</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

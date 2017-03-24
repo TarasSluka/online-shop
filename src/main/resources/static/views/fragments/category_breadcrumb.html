@@ -1,0 +1,14 @@
+<div ng-if="hierarchy.length>1">
+    <ol class="breadcrumb">
+        <li>
+            <a ui-sref="shop.root.home.category">
+                <i class="fa fa-home"></i>
+            </a>
+        </li>
+        <li ng-repeat="hier in hierarchy" ng-class='{myBreadcrumb : $last}'>
+            <a href="/#/category/{{hier.id}}">
+                {{hier.name}}
+            </a>
+        </li>
+    </ol>
+</div>

@@ -1,0 +1,69 @@
+<div>
+    <h1>{{product.name}} {{product.price}} грн</h1>
+    <div class="product-list-header ">
+        <div class="pull-left">
+            <div style="display: flex;">
+                <div ng-if="hierarchy.length>1">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a ui-sref="shop.root.home">
+                                <i class="fa fa-home"></i>
+                            </a>
+                        </li>
+                        <li ng-repeat="hier in hierarchy">
+                            <a ui-sref="shop.root.home.category({categoryId: hier.id})">
+                                {{hier.name}}
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="pull-right">
+            <div class="" style="float: right;">
+                <div>
+                    <button ng-disabled="checkProductInCart(product.id)" ng-click="addToCard(product, 1)"
+                            class="btn btn-primary">
+                        Add to cart
+                    </button>
+                </div>
+                <div><span ng-show="checkProductInCart(product.id)">
+                        this product in your cart<a ng-click="deleteFromCart(product.id)">remove</a>
+                     </span>
+                </div>
+                <div visible-to-roles="ROLE_ADMIN">
+                    <a ui-sref="shop.root.admin.product.edit({id:product.id})"
+                       class="btn btn-success">edit</a>
+                    <a ng-click="deleteProduct(product.id)" class="btn btn-danger">delete</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <ng-image-gallery ng-click="setModal()" images="images" methods="methods" conf="{imgAnim: 'slide'}"
+                          thumbnails="true"
+                          inline="inline"
+                          bubbles="bubbles" img-bubbles="true" bg-close="true" on-open="opened();"
+                          on-close="closed();" bg-close="false"></ng-image-gallery>
+    </div>
+    <div class="container">
+        <div class="col-md-8">
+            <table class="table table-condensed table-hover table-striped">
+                <tbody>
+                <tr ng-repeat="description in product.descriptionList">
+                    <th>
+                        {{description.type}}
+                    </th>
+                    <th>
+                        {{description.value}}
+                    </th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
+
+</div>
