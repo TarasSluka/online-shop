@@ -9,7 +9,7 @@ angular.module('shopApp').directive('searchandselect', function ($rootScope) {
             onscroll: "&",
             totalrecords: "="
         },
-        templateUrl: '/views/part/searchandselect.html',
+        templateUrl: serverPath+'views/part/searchandselect.html',
         link: function (scope, elm, attr) {
 
             scope.showList = false;

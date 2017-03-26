@@ -4,7 +4,7 @@ angular.module('shopApp').service('modalService', ['$uibModal', function ($uibMo
         backdrop: true,
         keyboard: true,
         modalFade: true,
-        templateUrl: serverPath + '/views/fragments/admin/modal.html'
+        templateUrl: serverPath + 'views/fragments/admin/modal.html'
     };
 
     var modalOptions = {

@@ -24,6 +24,6 @@ angular.module('shopApp')  // Dropdown directive
                     }
                 };
             },
-            templateUrl: '/views/part/dropdown-template.html'
+            templateUrl: serverPath+'views/part/dropdown-template.html'
         };
     });

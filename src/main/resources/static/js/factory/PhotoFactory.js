@@ -1,7 +1,7 @@
 'use strict';
 angular.module('shopApp')
     .factory('PhotoFactory', ['$http', '$log', function ($http, $log) {
-        var urlBase = serverPath + '/api/product/photo/';
+        var urlBase = serverPath + 'api/product/photo/';
         var PhotoFactory = {};
 
         PhotoFactory.getPhotos = function (id) {

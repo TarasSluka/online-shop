@@ -26,7 +26,7 @@ angular.module("acute.select", [])
             "id": "@"
         },
         replace: true,
-        templateUrl: "/views/part/acute.select.htm",
+        templateUrl: serverPath+"views/part/acute.select.htm",
         link: function(scope, element, attrs) {
             scope.initialise();
         },

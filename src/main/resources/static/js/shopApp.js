@@ -18,7 +18,10 @@ angular.module('shopApp')
                             controller: 'HeaderController as HeaderController'
                         },
                         'main@shop': {
-                            templateUrl: serverPath + 'views/fragments/start_page.html'
+                            templateUrl: serverPath + 'views/fragments/start_page.html',
+                            controller: function ($scope) {
+                                $scope.serverPath = serverPath;
+                            }
                         },
                         'footer@shop': {
                             templateUrl: serverPath + 'views/fragments/footer.html'
@@ -149,8 +152,12 @@ angular.module('shopApp')
                     },
                     views: {
                         'content@shop.root': {
-                            templateUrl: serverPath + 'views/fragments/start_page.html'
+                            templateUrl: serverPath + 'views/fragments/start_page.html',
+                            controller: function ($scope) {
+                                $scope.serverPath = serverPath;
+                            }
                         }
+
                     }, data: {
                         role: USER_ROLES.all
                     }
