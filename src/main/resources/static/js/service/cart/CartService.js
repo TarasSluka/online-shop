@@ -2,7 +2,7 @@
 angular.module('shopApp').factory('CartService', [
     '$http',
     function ($http) {
-        var urlBase = 'api/cart';
+        var urlBase = serverPath + 'api/cart';
         var CartService = {};
 
         CartService.save = function (productId, quantity) {

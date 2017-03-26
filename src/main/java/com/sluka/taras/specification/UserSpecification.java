@@ -2,7 +2,8 @@ package com.sluka.taras.specification;
 
 import com.sluka.taras.common.model.User;
 import com.sluka.taras.web.model.UserFilterRequest;
-import org.apache.logging.log4j.LogManager;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -17,7 +18,7 @@ import java.util.List;
 
 @Component
 public class UserSpecification implements Specification<User> {
-    private final org.apache.logging.log4j.Logger logger = LogManager.getLogger(UserSpecification.class);
+    private final Logger logger = LogManager.getLogger(UserSpecification.class);
     private UserFilterRequest filterRequest;
 
     public void setFilter(UserFilterRequest filterRequest) {

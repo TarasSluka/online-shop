@@ -3,7 +3,8 @@ package com.sluka.taras.common.mapper;
 import com.sluka.taras.common.dto.CartDto;
 import com.sluka.taras.common.model.Cart;
 import com.sluka.taras.service.ProductService;
-import org.apache.logging.log4j.LogManager;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @Component
 public class CartMapper {
-    private final org.apache.logging.log4j.Logger logger = LogManager.getLogger(CartMapper.class);
+    private final Logger logger = LogManager.getLogger(CartMapper.class);
     @Autowired
     ProductMapper productMapper;
     @Lazy

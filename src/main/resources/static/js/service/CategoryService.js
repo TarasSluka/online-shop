@@ -1,7 +1,7 @@
 'use strict';
 angular.module('shopApp')
     .factory('CategoryService', ['$http', '$log', function ($http, $log) {
-        var urlBase = 'api/category';
+        var urlBase = serverPath + 'api/category';
         var CategoryService = {};
         CategoryService.getCategories = function () {
             return $http.get(urlBase);

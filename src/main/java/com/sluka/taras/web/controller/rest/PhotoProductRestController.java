@@ -2,8 +2,8 @@ package com.sluka.taras.web.controller.rest;
 
 import com.sluka.taras.service.PhotoService;
 import com.sluka.taras.service.serviceImpl.PhotoServiceImpl;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +16,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/product/photo/{id}")
@@ -35,10 +37,14 @@ public class PhotoProductRestController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<String>> getAllPhoto(@PathVariable("id") Long id) throws IOException {
+    public ResponseEntity<List<String>> getAllPhoto(@PathVariable("id") Long id, HttpServletRequest request) throws IOException {
         List<String> list = photoService.getAllURLToPhotoProduct(id);
         if (list.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        else
+            list = list.stream()
+                    .map(item -> request.getContextPath() + item)
+                    .collect(Collectors.toList());
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
@@ -74,11 +80,12 @@ public class PhotoProductRestController {
     }
 
     @RequestMapping(value = "/ava", method = RequestMethod.GET)
-    public ResponseEntity<Map> getAva(@PathVariable("id") Long id) throws IOException {
+    public ResponseEntity<Map> getAva(@PathVariable("id") Long id, HttpServletRequest request) throws IOException {
+
         String avaUrl = null;
         avaUrl = photoService.getURLToAvaProduct(id);
         Map map = new HashMap();
-        map.put("avaUrl", avaUrl);
+        map.put("avaUrl", request.getContextPath() + avaUrl);
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
 

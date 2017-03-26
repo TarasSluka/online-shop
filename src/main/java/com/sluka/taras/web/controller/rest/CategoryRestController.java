@@ -1,11 +1,11 @@
 package com.sluka.taras.web.controller.rest;
 
-import com.sluka.taras.service.CategoryService;
 import com.sluka.taras.common.dto.CategoryDto;
 import com.sluka.taras.common.mapper.CategoryMapper;
 import com.sluka.taras.common.model.Category;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.sluka.taras.service.CategoryService;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/category")
 public class CategoryRestController {
-    private final Logger Logger = LogManager.getLogger(CategoryRestController.class);
+    private final Logger logger = LogManager.getLogger(CategoryRestController.class);
     private CategoryService categoryService;
     private CategoryMapper categoryMapper;
 

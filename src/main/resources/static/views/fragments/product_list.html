@@ -2,7 +2,21 @@
     <div class="product-list-header">
         <div class="pull-left">
             <div style="display: flex;">
-                <div ng-include="'/views/fragments/category_breadcrumb.html'"></div>
+                <!--<div ng-include="{{serverPath+'views/fragments/category_breadcrumb.html'}}"></div>-->
+                <div ng-if="hierarchy.length>1">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a ui-sref="shop.root.home.category">
+                                <i class="fa fa-home"></i>
+                            </a>
+                        </li>
+                        <li ng-repeat="hier in hierarchy" ng-class='{myBreadcrumb : $last}'>
+                            <a href="{{serverPath}}#/category/{{hier.id}}">
+                                {{hier.name}}
+                            </a>
+                        </li>
+                    </ol>
+                </div>
                 <div ng-if="showPrice()" style="margin: auto; padding-left: 10px;">
                     <lable style="color: #2a6496;">
                         UAH {{minPrice|number}} - UAH {{maxPrice |number}}
@@ -101,5 +115,24 @@
     <div ng-if="products.length===0">
         <h3 style="text-align: center">No Products</h3>
     </div>
-    <div class="text-center" ng-include="'views/part/pagination.html'"></div>
+    <div class="text-center">
+        <ul ng-if="pages.length" class="pagination cursorPointer">
+            <li ng-class="{disabled:currentPage === 1}">
+                <a ng-click="setPage(1)">First</a>
+            </li>
+            <li ng-class="{disabled:currentPage === 1}">
+                <a ng-click="setPage(currentPage - 1)">Previous</a>
+            </li>
+            <li ng-repeat="page in pages" ng-class="{active:currentPage === page}">
+                <a ng-click="setPage(page)">{{page}}</a>
+            </li>
+            <li ng-class="{disabled:currentPage === totalPages}">
+                <a ng-click="setPage(currentPage + 1)">Next</a>
+            </li>
+            <li ng-class="{disabled:currentPage === totalPages}">
+                <a ng-click="setPage(totalPages)">Last</a>
+            </li>
+        </ul>
+
+    </div>
 </div>

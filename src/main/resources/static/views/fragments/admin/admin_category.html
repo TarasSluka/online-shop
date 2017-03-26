@@ -1,5 +1,18 @@
-<div>
-    <div ng-include="'/views/fragments/category_breadcrumb.html'"></div>
+<div><!--ng-include="{{serverPath+'/views/fragments/category_breadcrumb.html'}}"-->
+    <div ng-if="hierarchy.length>1">
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="shop.root.home.category">
+                    <i class="fa fa-home"></i>
+                </a>
+            </li>
+            <li ng-repeat="hier in hierarchy" ng-class='{myBreadcrumb : $last}'>
+                <a href="{{serverPath}}#/admin/category/{{hier.id}}">
+                    {{hier.name}}
+                </a>
+            </li>
+        </ol>
+    </div>
     <div class="container">
         <div class="row">
             <button type="button" ng-click="toggleShowAdd()" class="btn  btn-primary">

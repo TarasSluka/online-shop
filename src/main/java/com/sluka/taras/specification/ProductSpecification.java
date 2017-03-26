@@ -4,7 +4,8 @@ import com.sluka.taras.service.CategoryService;
 import com.sluka.taras.common.model.Category;
 import com.sluka.taras.common.model.Product;
 import com.sluka.taras.web.model.ProductFilterRequest;
-import org.apache.logging.log4j.LogManager;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
@@ -18,7 +19,7 @@ import java.util.List;
 
 @Component
 public class ProductSpecification implements Specification<Product> {
-    private final org.apache.logging.log4j.Logger logger = LogManager.getLogger(ProductSpecification.class);
+    private final Logger logger = LogManager.getLogger(ProductSpecification.class);
     CategoryService categoryService;
     private ProductFilterRequest filterRequest;
 

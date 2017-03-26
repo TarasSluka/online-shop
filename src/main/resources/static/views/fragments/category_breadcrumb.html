@@ -6,7 +6,7 @@
             </a>
         </li>
         <li ng-repeat="hier in hierarchy" ng-class='{myBreadcrumb : $last}'>
-            <a href="/#/category/{{hier.id}}">
+            <a href="{{serverPath}}#/category/{{hier.id}}">
                 {{hier.name}}
             </a>
         </li>

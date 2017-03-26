@@ -10,7 +10,8 @@ import com.sluka.taras.repository.UserRepository;
 import com.sluka.taras.security.SecurityUtils;
 import com.sluka.taras.specification.UserSpecification;
 import com.sluka.taras.web.model.UserFilterRequest;
-import org.apache.logging.log4j.LogManager;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
@@ -22,7 +23,7 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private final org.apache.logging.log4j.Logger Logger = LogManager.getLogger(UserServiceImpl.class);
+    private final Logger logger = LogManager.getLogger(UserServiceImpl.class);
     private final PhotoService photoService;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -162,12 +163,12 @@ public class UserServiceImpl implements UserService {
         String oldPassword = userResetPasswordDto.getOldPassword();
         String newPassword = userResetPasswordDto.getNewPassword();
         if (passwordEncoder.matches(oldPassword, user.getPassword())) {
-            Logger.info("true");
+            logger.info("true");
             user.setPassword(passwordEncoder.encode(newPassword));
             userRepository.save(user);
             return true;
         } else {
-            Logger.info("bad old password");
+            logger.info("bad old password");
             return false;
         }
     }

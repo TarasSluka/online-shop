@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="shopApp">
+<html lang="en" ng-app="shopApp" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Online-shop</title>
@@ -11,10 +11,10 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css"/>
-    <link rel="stylesheet" href="/lib/css/angular-ui-tree.css"/>
-    <link rel="stylesheet" href="/css/index.css"/>
-    <link rel="stylesheet" href="/lib/css/acute.select.css"/>
-    <link rel="stylesheet" href="/lib/css/ng-image-gallery.min.css"/>
+    <!--<link rel="stylesheet" th:href="@{/lib/css/angular-ui-tree.css}"/>-->
+    <link rel="stylesheet" th:href="@{/css/index.css}"/>
+    <link rel="stylesheet" th:href="@{/lib/css/acute.select.css}"/>
+    <link rel="stylesheet" th:href="@{/lib/css/ng-image-gallery.min.css}"/>
     <style type="text/css">[ng\:cloak], [ng-cloak], .ng-cloak {
         display: none !important;
     }</style>
@@ -24,11 +24,11 @@
 <body>
 <div ui-view=""></div>
 
+<script th:inline="javascript">var serverPath = [[@{/}]]; </script>
 
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.1/angular.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.1/angular-cookies.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.1/angular-animate.js"></script>
 <script src="https://code.angularjs.org/1.5.1/angular-messages.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.js"></script>
@@ -38,62 +38,59 @@
 <script type="text/javascript" src="https://angular-file-upload.appspot.com/js/ng-file-upload-shim.js"></script>
 <script type="text/javascript" src="https://angular-file-upload.appspot.com/js/ng-file-upload.js"></script>
 
-<script type="text/javascript" src="/lib/js/angular/acute.select.js"></script>
-<script type="text/javascript" src="/lib/js/angular/angular-ui-router.min.js"></script>
-<script type="text/javascript" src="/lib/js/angular/angular-resource.min.js"></script>
+<script type="text/javascript" th:src="@{/lib/js/angular/acute.select.js}"></script>
+<script type="text/javascript" th:src="@{/lib/js/angular/angular-ui-router.min.js}"></script>
+<script type="text/javascript" th:src="@{/lib/js/angular/angular-resource.min.js}"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-sanitize.js"></script>
-<script type="text/javascript" src="/lib/js/angular/ui-select.js"></script>
-<script type="text/javascript" src="/lib/js/angular/ng-image-gallery.min.js"></script>
-<script type="text/javascript" src="/lib/js/angular/angular-file-upload.min.js"></script>
+<script type="text/javascript" th:src="@{/lib/js/angular/ui-select.js}"></script>
+<script type="text/javascript" th:src="@{/lib/js/angular/ng-image-gallery.min.js}"></script>
 
-<script type="text/javascript" src="/js/shopApp.js"></script>
+<script type="text/javascript" th:src="@{/js/shopApp.js}"></script>
 
-<script type="text/javascript" src="/js/controller/HeaderController.js"></script>
-<script type="text/javascript" src="/js/controller/LoginController.js"></script>
-<script type="text/javascript" src="/js/controller/RegistrationController.js"></script>
-<script type="text/javascript" src="/js/controller/UserCategoryController.js"></script>
-<script type="text/javascript" src="/js/controller/FilterController.js"></script>
-<script type="text/javascript" src="/js/controller/UserProfileController.js"></script>
-<script type="text/javascript" src="/js/controller/UserEditProfileController.js"></script>
-<script type="text/javascript" src="/js/controller/UserListController.js"></script>
-<script type="text/javascript" src="/js/controller/ProductDetailController.js"></script>
-<script type="text/javascript" src="/js/controller/ProductListController.js"></script>
-<script type="text/javascript" src="/js/controller/CartController.js"></script>
-<script type="text/javascript" src="/js/controller/AdminCategoryController.js"></script>
-<script type="text/javascript" src="/js/controller/AddProductController.js"></script>
-<script type="text/javascript" src="/js/controller/EditProductController.js"></script>
+<script type="text/javascript" th:src="@{/js/controller/HeaderController.js}"></script>
+<script type="text/javascript" th:src="@{/js/controller/LoginController.js}"></script>
+<script type="text/javascript" th:src="@{/js/controller/RegistrationController.js}"></script>
+<script type="text/javascript" th:src="@{/js/controller/UserCategoryController.js}"></script>
+<script type="text/javascript" th:src="@{/js/controller/FilterController.js}"></script>
+<script type="text/javascript" th:src="@{/js/controller/UserProfileController.js}"></script>
+<script type="text/javascript" th:src="@{/js/controller/UserEditProfileController.js}"></script>
+<script type="text/javascript" th:src="@{/js/controller/UserListController.js}"></script>
+<script type="text/javascript" th:src="@{/js/controller/ProductDetailController.js}"></script>
+<script type="text/javascript" th:src="@{/js/controller/ProductListController.js}"></script>
+<script type="text/javascript" th:src="@{/js/controller/CartController.js}"></script>
+<script type="text/javascript" th:src="@{/js/controller/AdminCategoryController.js}"></script>
+<script type="text/javascript" th:src="@{/js/controller/AddProductController.js}"></script>
+<script type="text/javascript" th:src="@{/js/controller/EditProductController.js}"></script>
 
-<script type="text/javascript" src="/js/factory/DescriptionFactory.js"></script>
-<script type="text/javascript" src="/js/factory/acute.core.services.js"></script>
-<script type="text/javascript" src="/js/factory/FileReaderFactory.js"></script>
-<script type="text/javascript" src="/js/factory/PhotoFactory.js"></script>
+<script type="text/javascript" th:src="@{/js/factory/acute.core.services.js}"></script>
+<script type="text/javascript" th:src="@{/js/factory/PhotoFactory.js}"></script>
 
-<script type="text/javascript" src="/js/service/FilterService.js"></script>
-<script type="text/javascript" src="/js/service/PaginationService.js"></script>
-<script type="text/javascript" src="/js/service/ProductService.js"></script>
-<script type="text/javascript" src="/js/service/UserSession.js"></script>
-<script type="text/javascript" src="/js/service/AuthenticationService.js"></script>
-<script type="text/javascript" src="/js/service/CategorySession.js"></script>
+<script type="text/javascript" th:src="@{/js/service/FilterService.js}"></script>
+<script type="text/javascript" th:src="@{/js/service/PaginationService.js}"></script>
+<script type="text/javascript" th:src="@{/js/service/ProductService.js}"></script>
+<script type="text/javascript" th:src="@{/js/service/UserSession.js}"></script>
+<script type="text/javascript" th:src="@{/js/service/AuthenticationService.js}"></script>
+<script type="text/javascript" th:src="@{/js/service/CategorySession.js}"></script>
 
-<script type="text/javascript" src="/js/service/cart/CartService.js"></script>
-<script type="text/javascript" src="/js/service/cart/CartLocalStorageService.js"></script>
-<script type="text/javascript" src="/js/service/cart/CartSessionService.js"></script>
+<script type="text/javascript" th:src="@{/js/service/cart/CartService.js}"></script>
+<script type="text/javascript" th:src="@{/js/service/cart/CartLocalStorageService.js}"></script>
+<script type="text/javascript" th:src="@{/js/service/cart/CartSessionService.js}"></script>
 
 
-<script type="text/javascript" src="/js/service/UserService.js"></script>
-<script type="text/javascript" src="/js/service/CategoryService.js"></script>
-<script type="text/javascript" src="/js/service/modalService.js"></script>
+<script type="text/javascript" th:src="@{/js/service/UserService.js}"></script>
+<script type="text/javascript" th:src="@{/js/service/CategoryService.js}"></script>
+<script type="text/javascript" th:src="@{/js/service/modalService.js}"></script>
 
 
-<script type="text/javascript" src="/js/config/constant.js"></script>
-<script type="text/javascript" src="/js/config/run.js"></script>
+<script type="text/javascript" th:src="@{/js/config/constant.js}"></script>
+<script type="text/javascript" th:src="@{/js/config/run.js}"></script>
 
-<script type="text/javascript" src="/js/directives/dropdown.js"></script>
-<script type="text/javascript" src="/js/directives/acute.core.directives.js"></script>
-<script type="text/javascript" src="/js/directives/searchandselect.js"></script>
+<script type="text/javascript" th:src="@{/js/directives/dropdown.js}"></script>
+<script type="text/javascript" th:src="@{/js/directives/acute.core.directives.js}"></script>
+<script type="text/javascript" th:src="@{/js/directives/searchandselect.js}"></script>
 
-<script type="text/javascript" src="/js/directives/CartDirective.js"></script>
-<script type="text/javascript" src="/js/directives/LoadAvaByIdProductDirective.js"></script>
+<script type="text/javascript" th:src="@{/js/directives/CartDirective.js}"></script>
+<script type="text/javascript" th:src="@{/js/directives/LoadAvaByIdProductDirective.js}"></script>
 
 </body>
 </html>

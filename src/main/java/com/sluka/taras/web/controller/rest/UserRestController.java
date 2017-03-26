@@ -10,8 +10,8 @@ import com.sluka.taras.service.PageableService;
 import com.sluka.taras.service.PhotoService;
 import com.sluka.taras.service.UserService;
 import com.sluka.taras.web.model.UserFilterRequest;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +30,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("api/user")
 public class UserRestController {
-    private final Logger Logger = LogManager.getLogger(UserRestController.class);
+    private final Logger logger = LogManager.getLogger(UserRestController.class);
     private final UserService userService;
     private final UserMapper userMapper;
     private final PageableService pageableService;
@@ -139,7 +140,7 @@ public class UserRestController {
     @PreAuthorize("hasRole('ROLE_ADMIN') OR hasRole('ROLE_USER')")
     @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
     public ResponseEntity<Map<String, String>> resetPassword(@RequestBody UserResetPasswordDto userResetPasswordDto) {
-        Logger.info(userResetPasswordDto.toString());
+        logger.info(userResetPasswordDto.toString());
         String response = null;
         Map<String, String> stringStringMap = new HashMap<>();
         User user = userService.getCurrentUser();
@@ -180,7 +181,7 @@ public class UserRestController {
 
     //    @PreAuthorize("hasRole('ROLE_ADMIN') OR hasRole('ROLE_USER')")
     @RequestMapping(value = "/ava", method = RequestMethod.GET)
-    public ResponseEntity<Map<String, String>> getAva() throws IOException {
+    public ResponseEntity<Map<String, String>> getAva(HttpServletRequest request) throws IOException {
         User user = userService.getCurrentUser();
         Long id = null;
         if (user != null)
@@ -190,7 +191,7 @@ public class UserRestController {
             avaUrl = photoService.getURLToPhotoUser(id);
         else avaUrl = photoService.noImageToUser();
         Map map = new HashMap();
-        map.put("avaUrl", avaUrl);
+        map.put("avaUrl", request.getContextPath() + avaUrl);
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
 

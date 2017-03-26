@@ -1,11 +1,12 @@
 <div class='sidebar'>
     <div>
-        <a href="/#/category/{{categories.parent}}" ng-if="!isRootCategory(categories)" class=" btn btn-info">
+        <a href="{{serverPath}}#/category/{{categories.parent}}" ng-if="!isRootCategory(categories)"
+           class=" btn btn-info">
             {{categories.name}}
         </a>
         <ul ng-repeat="category in categories.children" class="nav nav-tabs nav-stacked">
             <li>
-                <a href="/#/category/{{category.id}}">
+                <a href="{{serverPath}}#/category/{{category.id}}">
                     {{category.name}}
                     <span ng-show="category.children" class="fa fa-chevron-right pull-right"></span>
                     <span ng-show="!category.children" class="fa fa-chevron-down pull-right"></span>

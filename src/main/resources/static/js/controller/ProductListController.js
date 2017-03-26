@@ -6,6 +6,7 @@ angular.module('shopApp').controller('ProductListController', [
               $timeout, PhotoFactory, ProductService, FilterService, CART_EVENTS, CartSessionService, UserSession, CartService, CartLocalStorageService, $interval, $q, modalService, CategorySession) {
         $scope.sortBy = null;
         var request = {};
+        $scope.serverPath = serverPath;
         $scope.myObj = request;
         $scope.pr = FilterService.getPrice;
         $scope.curMin = FilterService.getCurrentMinPrice;

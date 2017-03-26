@@ -11,17 +11,17 @@ angular.module('shopApp')
                     abstract: true,
                     views: {
                         '@': {
-                            templateUrl: '/views/ui-view/header_main_footer.html'
+                            templateUrl: serverPath + 'views/ui-view/header_main_footer.html'
                         },
                         'header@shop': {
-                            templateUrl: '/views/fragments/header.html',
+                            templateUrl: serverPath + 'views/fragments/header.html',
                             controller: 'HeaderController as HeaderController'
                         },
                         'main@shop': {
-                            templateUrl: '/views/fragments/start_page.html'
+                            templateUrl: serverPath + 'views/fragments/start_page.html'
                         },
                         'footer@shop': {
-                            templateUrl: '/views/fragments/footer.html'
+                            templateUrl: serverPath + 'views/fragments/footer.html'
                         }
                     }, data: {
                         role: USER_ROLES.all
@@ -34,7 +34,7 @@ angular.module('shopApp')
                     },
                     views: {
                         'main@shop': {
-                            templateUrl: '/views/fragments/login.html',
+                            templateUrl: serverPath + 'views/fragments/login.html',
                             controller: 'LoginController as LoginController'
                         }
                     }, data: {
@@ -48,7 +48,7 @@ angular.module('shopApp')
                     },
                     views: {
                         'main@shop': {
-                            templateUrl: '/views/fragments/registration.html',
+                            templateUrl: serverPath + 'views/fragments/registration.html',
                             controller: 'RegistrationController as RegistrationController'
                         }
                     }, data: {
@@ -62,7 +62,7 @@ angular.module('shopApp')
                     },
                     views: {
                         'main@shop': {
-                            templateUrl: '/views/fragments/404.html'
+                            templateUrl: serverPath + 'views/fragments/404.html'
                             // controller: ''
                         }
                     }, data: {
@@ -76,7 +76,7 @@ angular.module('shopApp')
                     },
                     views: {
                         'main@shop': {
-                            templateUrl: '/views/fragments/user_profile.html',
+                            templateUrl: serverPath + 'views/fragments/user_profile.html',
                             controller: 'UserProfileController as UserProfileController'
                         }
                     },
@@ -91,7 +91,7 @@ angular.module('shopApp')
                     },
                     views: {
                         'main@shop': {
-                            templateUrl: '/views/fragments/user_profile_edit.html',
+                            templateUrl: serverPath + 'views/fragments/user_profile_edit.html',
                             controller: 'UserEditProfileController as UserEditProfileController'
                         }
                     }, data: {
@@ -105,7 +105,7 @@ angular.module('shopApp')
                     },
                     views: {
                         'main@shop': {
-                            templateUrl: '/views/fragments/cart_large.html',
+                            templateUrl: serverPath + 'views/fragments/cart_large.html',
                             controller: 'CartController as CartController'
                         }
                     }, data: {
@@ -120,18 +120,18 @@ angular.module('shopApp')
                     },
                     views: {
                         'main@shop': {
-                            templateUrl: '/views/ui-view/sidebar_content.html'
+                            templateUrl: serverPath + 'views/ui-view/sidebar_content.html'
                         },
                         'sidebar@shop.root': {
-                            templateUrl: '/views/ui-view/category_filter.html'
+                            templateUrl: serverPath + 'views/ui-view/category_filter.html'
                         },
                         'filter@shop.root': {
-                            templateUrl: '/views/fragments/filterProduct.html',
+                            templateUrl: serverPath + 'views/fragments/filterProduct.html',
                             controller: 'FilterController as FilterController'
 
                         },
                         'category@shop.root': {
-                            templateUrl: '/views/fragments/userCategory.html',
+                            templateUrl: serverPath + 'views/fragments/userCategory.html',
                             controller: 'UserCategoryController as UserCategoryController',
                             resolve: {
                                 initCategories: function ($rootScope, $state, $stateParams,
@@ -149,7 +149,7 @@ angular.module('shopApp')
                     },
                     views: {
                         'content@shop.root': {
-                            templateUrl: '/views/fragments/start_page.html'
+                            templateUrl: serverPath + 'views/fragments/start_page.html'
                         }
                     }, data: {
                         role: USER_ROLES.all
@@ -163,7 +163,7 @@ angular.module('shopApp')
                     reloadOnSearch: true,
                     views: {
                         'content@shop.root': {
-                            templateUrl: '/views/fragments/product_list.html',
+                            templateUrl: serverPath + 'views/fragments/product_list.html',
                             controller: 'ProductListController as ProductListController'
                         }
                     },
@@ -178,7 +178,7 @@ angular.module('shopApp')
                     },
                     views: {
                         'content@shop.root': {
-                            templateUrl: '/views/fragments/product_detail.html',
+                            templateUrl: serverPath + 'views/fragments/product_detail.html',
                             controller: 'ProductDetailController as ProductDetailController'
                         }
                     },
@@ -193,7 +193,7 @@ angular.module('shopApp')
                     },
                     views: {
                         'content@shop.root': {
-                            templateUrl: '/views/fragments/product_list.html',
+                            templateUrl: serverPath + 'views/fragments/product_list.html',
                             controller: 'ProductListController as ProductListController'
                         }
                     }, data: {
@@ -207,9 +207,9 @@ angular.module('shopApp')
                     },
                     views: {
                         'sidebar@shop.root': {
-                            templateUrl: '/views/fragments/admin/admin_sidebar_left.html'
+                            templateUrl: serverPath + 'views/fragments/admin/admin_sidebar_left.html'
                         }, 'content@shop.root': {
-                            templateUrl: '/views/fragments/start_page.html'
+                            templateUrl: serverPath + 'views/fragments/start_page.html'
                         }
                     }, data: {
                         role: USER_ROLES.admin
@@ -222,7 +222,7 @@ angular.module('shopApp')
                     },
                     views: {
                         'content@shop.root': {
-                            templateUrl: '/views/fragments/user_list.html',
+                            templateUrl: serverPath + 'views/fragments/user_list.html',
                             controller: 'UserListController as UserListController'
                         }
                     }, data: {
@@ -236,7 +236,7 @@ angular.module('shopApp')
                     },
                     views: {
                         'content@shop.root': {
-                            templateUrl: '/views/fragments/admin/admin_category.html',
+                            templateUrl: serverPath + 'views/fragments/admin/admin_category.html',
                             controller: 'AdminCategoryController as AdminCategoryController'
                         }
                     }
@@ -250,7 +250,7 @@ angular.module('shopApp')
                         console.log("enter shop.root.admin.product");
                     }, views: {
                         'content@shop.root': {
-                            templateUrl: '/views/fragments/product_list.html',
+                            templateUrl: serverPath + 'views/fragments/product_list.html',
                             controller: 'ProductListController as ProductListController'
                         }
                     }, data: {
@@ -263,7 +263,7 @@ angular.module('shopApp')
                         console.log("enter shop.root.admin.product.new");
                     }, views: {
                         'content@shop.root': {
-                            templateUrl: '/views/fragments/product_add.html',
+                            templateUrl: serverPath + 'views/fragments/product_add.html',
                             controller: 'AddProductController as AddProductController'
                         }
                     }, data: {
@@ -279,7 +279,7 @@ angular.module('shopApp')
                         console.log("enter shop.root.admin.product.edit");
                     }, views: {
                         'content@shop.root': {
-                            templateUrl: '/views/fragments/product_edit.html',
+                            templateUrl: serverPath + 'views/fragments/product_edit.html',
                             controller: 'EditProductController as EditProductController'
                         }
                     }, data: {

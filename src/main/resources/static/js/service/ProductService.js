@@ -2,7 +2,7 @@
 angular.module('shopApp')
     .factory('ProductService', ['$state', '$http', '$q',
         function ($state, $http, $q) {
-            var urlBase = 'api/product';
+            var urlBase = serverPath + 'api/product';
             var request = {};
             var ProductService = {};
             ProductService.request = 1;

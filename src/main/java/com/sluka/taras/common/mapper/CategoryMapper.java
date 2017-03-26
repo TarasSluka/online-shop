@@ -4,7 +4,8 @@ package com.sluka.taras.common.mapper;
 import com.sluka.taras.service.CategoryService;
 import com.sluka.taras.common.dto.CategoryDto;
 import com.sluka.taras.common.model.Category;
-import org.apache.logging.log4j.LogManager;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -14,7 +15,7 @@ import java.util.List;
 
 @Component
 public class CategoryMapper {
-    private final org.apache.logging.log4j.Logger logger = LogManager.getLogger(CategoryMapper.class);
+    private final Logger logger = LogManager.getLogger(CategoryMapper.class);
     CategoryService categoryService;
 
     @Autowired

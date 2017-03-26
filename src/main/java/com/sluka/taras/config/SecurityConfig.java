@@ -25,7 +25,6 @@ import org.springframework.security.web.authentication.logout.HttpStatusReturnin
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-@ComponentScan(basePackages = {"com.sluka.taras.security"})
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
@@ -66,16 +65,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().disable()
                 .csrf().disable();
         http.authorizeRequests()
-                .antMatchers("/static/**").permitAll()
-                .antMatchers("/app/**").permitAll()
-                .antMatchers("/js/**").permitAll()
-                .antMatchers("/css/**").permitAll()
-                .antMatchers("/views/**").permitAll()
-                .antMatchers("/lib/**").permitAll()
-                .antMatchers("/images/**").permitAll()
-                .antMatchers("/").permitAll()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/registration").permitAll()
+                .antMatchers("*/static/**").permitAll()
+                .antMatchers("*/app/**").permitAll()
+                .antMatchers("*/js/**").permitAll()
+                .antMatchers("*/css/**").permitAll()
+                .antMatchers("*/views/**").permitAll()
+                .antMatchers("*/lib/**").permitAll()
+                .antMatchers("*/images/**").permitAll()
+                .antMatchers("*/").permitAll()
+                .antMatchers("*/login").permitAll()
+                .antMatchers("*/registration").permitAll()
 //                .anyRequest().authenticated()
                 .and()
                 .exceptionHandling()

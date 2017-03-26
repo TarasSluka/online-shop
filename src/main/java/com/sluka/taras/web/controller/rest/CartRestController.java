@@ -5,7 +5,8 @@ import com.sluka.taras.service.UserService;
 import com.sluka.taras.common.dto.CartDto;
 import com.sluka.taras.common.model.Cart;
 import com.sluka.taras.common.model.User;
-import org.apache.logging.log4j.LogManager;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ import java.util.List;
 @RequestMapping("api/cart")
 public class CartRestController {
 
-    private final org.apache.logging.log4j.Logger logger = LogManager.getLogger(CartRestController.class);
+    private final Logger logger = LogManager.getLogger(CartRestController.class);
     private CartService cartService;
     private UserService userService;
 

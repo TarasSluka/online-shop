@@ -8,7 +8,7 @@ angular.module('shopApp').controller('AdminCategoryController', [
         $scope.showEdit = false;
         $scope.showMassage = false;
         initController();
-
+        $scope.serverPath = serverPath;
         $scope.addProduct = function () {
             $state.go('shop.root.admin.product.new', {categoryId: $scope.categories.id});
         };

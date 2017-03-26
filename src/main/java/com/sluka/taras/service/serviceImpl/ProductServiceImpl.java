@@ -12,7 +12,8 @@ import com.sluka.taras.repository.ProductRepository;
 import com.sluka.taras.specification.ProductMaxPriceSpecification;
 import com.sluka.taras.specification.ProductSpecification;
 import com.sluka.taras.web.model.ProductFilterRequest;
-import org.apache.logging.log4j.LogManager;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,7 +31,7 @@ import java.util.Map;
 @Service
 @Transactional
 public class ProductServiceImpl implements ProductService {
-    private final org.apache.logging.log4j.Logger logger = LogManager.getLogger(ProductServiceImpl.class);
+    private final Logger logger = LogManager.getLogger(ProductServiceImpl.class);
 
     private PageableService pageableService;
     private ProductRepository productRepository;

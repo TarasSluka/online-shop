@@ -5,7 +5,7 @@ angular.module('shopApp').factory('AuthenticationService', [
     function ($q, CartService, $state, $rootScope, $log, $http, $localStorage, UserService, UserSession, USER_ROLES, CART_EVENTS, CartSessionService, CartLocalStorageService, $timeout) {
         var AuthenticationService = {};
         AuthenticationService.login = function (auth) {
-            return $http.post('/login', $.param(auth), {
+            return $http.post(serverPath + '/login', $.param(auth), {
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             });
         };

@@ -1,7 +1,7 @@
 'use strict';
 angular.module('shopApp')
     .factory('UserService', ['$http', '$log', function ($http, $log) {
-        var urlBase = 'api/user';
+        var urlBase = serverPath + 'api/user';
         var UserService = {};
 
         UserService.getUsers = function (request) {
@@ -33,7 +33,7 @@ angular.module('shopApp')
             return $http.delete(urlBase + '/' + id);
         };
         UserService.getAva = function () {
-            return $http.get("api/user/ava", {
+            return $http.get(urlBase + "/ava", {
                 transformRequest: angular.identity,
                 headers: {
                     'Content-Type': undefined

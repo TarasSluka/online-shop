@@ -11,6 +11,7 @@ angular.module('shopApp').controller('UserCategoryController', [
             }, 1500, CategorySession.getInitial());
         }
 
+        $scope.serverPath = serverPath;
         $scope.openCategory = getCategoryById;
         function getCategoryById(categoryId) {
             $scope.categories = CategorySession.getCategoryById(categoryId);

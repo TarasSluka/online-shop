@@ -8,7 +8,8 @@ import com.sluka.taras.common.mapper.CategoryMapper;
 import com.sluka.taras.common.model.Category;
 import com.sluka.taras.common.model.Description;
 import com.sluka.taras.repository.CategoryRepository;
-import org.apache.logging.log4j.LogManager;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ import java.util.*;
 @Service
 @Transactional
 public class CategoryServiceImpl implements CategoryService {
-    private final org.apache.logging.log4j.Logger Logger = LogManager.getLogger(CategoryServiceImpl.class);
+    private final Logger logger = LogManager.getLogger(CategoryServiceImpl.class);
 
     CategoryRepository categoryRepository;
 
@@ -102,14 +103,14 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     public void deleteFromParent(Long id) {
-        Logger.info("deleteFromParent + " + id);
+        logger.info("deleteFromParent + " + id);
         Category parent = categoryRepository.findOne(categoryRepository.findOne(id).getParent().getId());
         parent.getChildren().removeIf(item -> item.getId() == id);
         categoryRepository.save(parent);
     }
 
     public final void deleteChildrenAll(Long id) {
-        Logger.info("deleteChildrenAll + " + id);
+        logger.info("deleteChildrenAll + " + id);
         Category category = categoryRepository.findOne(id);
         if (category.getChildren().size() != 0)
             category.getChildren().removeAll(category.getChildren());
