@@ -16,8 +16,8 @@ The system is designed following the principle of client-server architecture.
 ## Overview
 System supports next user types
 * anonymous - just a guest
-* user - plays buyer role
-* admin
+* user - plays buyer role (username - "user2", password - "11111111")
+* admin (username - "admin", password - "11111111")
 
 Each user has certain features.
 * ROLE_ANONYMOUS
